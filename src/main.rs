@@ -12,29 +12,35 @@ fn main() {
     let H = ["_    _","| |  | |","| |__| |","|  __  |","| |  | |","|_|  |_|"];
     let I = ["_____","|_   _|","| |","| |","_| |_","|_____|"];
 
-    let mut characterMap = HashMap::new();
-    characterMap.insert('A', A);
-    characterMap.insert('B', B);
-    characterMap.insert('C', C);
-    characterMap.insert('D', D);
-    characterMap.insert('E', E);
-    characterMap.insert('F', F);
-    characterMap.insert('G', G);
-    characterMap.insert('H', H);
-    characterMap.insert('I', I);
+    let mut character_map = HashMap::new();
+    character_map.insert('A', A);
+    character_map.insert('B', B);
+    character_map.insert('C', C);
+    character_map.insert('D', D);
+    character_map.insert('E', E);
+    character_map.insert('F', F);
+    character_map.insert('G', G);
+    character_map.insert('H', H);
+    character_map.insert('I', I);
 
     println!("Please enter the text to display:");
-    // let mut input = String::new();
+    let mut input = String::new();
 
-    // io::stdin()
-    //     .read_line(&mut input)
-    //     .expect("An input must be provided.");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("An input must be provided.");
+
+    let characters: Vec<char> = input.chars().collect();
+
+    for character in characters {
+        print_row(character_map[&character])
+    }
 
     // println!("Your input was '{}'", input.trim());
 }
 
-fn print_row(row: [String;10]) {
-    for character in row {
+fn print_row(row: [&str; 6]) {
+    for character in &row {
         print!("{}", character);
     }
 }
