@@ -2,15 +2,15 @@ use std::io;
 use std::collections::HashMap;
 
 fn main() {
-    let A = ["           ", "     /\\    ", "    /  \\   ", "   / /\\ \\  ", "  / ____ \\ ", " /_/__  \\_\\"];
-    let B = ["  ____  ", " |  _ \\ ", " | |_) |", " |  _ < ", " | |_) |", " |____/_"];
-    let C = ["   _____ ", "  / ____|", " | |     ", " | |     ", " | |     ", " \\_____|"];
-    let D = ["  _____  ", " |  __ \\ ", " | |  | |", " | |  | |", " | |  | |", " |_____/"];
-    let E = [" ______ ", " |  ____|", " | |__   ", " |  __|  ", " | |____ ", " |______|"];
+    let A = ["           ", "     /\\    ", "    /  \\   ", "   / /\\ \\  ", "  / ____ \\ ", " /_/    \\_\\"];
+    let B = ["  ____  ", " |  _ \\ ", " | |_) |", " |  _ < ", " | |_) |", " |____/ "];
+    let C = ["   _____ ", "  / ____|", " | |     ", " | |     ", " | |     ", "  \\_____|"];
+    let D = ["  _____  ", " |  __ \\ ", " | |  | |", " | |  | |", " | |  | |", " |_____/ "];
+    let E = ["  ______ ", " |  ____|", " | |__   ", " |  __|  ", " | |____ ", " |______|"];
     let F = ["  ______ ", " |  ____|", " | |__   ", " |  __|  ", " | |     ", " |_|     "];
-    let G = ["_____","/ ____|","| |  __","| | |_ |","| |__| |","\\_____|"];
-    let H = ["_    _","| |  | |","| |__| |","|  __  |","| |  | |","|_|  |_|"];
-    let I = ["_____","|_   _|","| |","| |","_| |_","|_____|"];
+    let G = ["  _____ "," / ____| "," | |  __ "," | | |_ |"," | |__| |","  \\_____|"];
+    let H = ["   _    _ "," | |  | |"," | |__| |"," |  __  |"," | |  | |"," |_|  |_|"];
+    let I = ["  _____ "," |_   _|","   | |  ","   | |  ","  _| |_ "," |_____|"];
 
     let mut character_map = HashMap::new();
     character_map.insert('A', A);
@@ -30,17 +30,17 @@ fn main() {
         .read_line(&mut input)
         .expect("An input must be provided.");
 
-    let characters: Vec<char> = input.chars().collect();
+    for i in 0..6 {
+        for character in input.chars() {
+            if character_map.contains_key(&character) {
+                print!("{}", character_map[&character][i]);
+            }            
+        }
 
-    for character in characters {
-        print_row(character_map[&character])
+        println!("");
     }
+
+    
 
     // println!("Your input was '{}'", input.trim());
-}
-
-fn print_row(row: [&str; 6]) {
-    for character in &row {
-        print!("{}", character);
-    }
 }
